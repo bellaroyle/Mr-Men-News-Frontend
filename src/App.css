@@ -1,3 +1,54 @@
 .App {
   text-align: center;
+  color: black;
+
 }
+body {
+  font-family: "Open Sans", sans-serif;
+}
+/********************* HEADER ************************/
+
+/********************* NAV-TOPICS ************************/
+nav {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+nav button {
+  background-color: white;
+  border: 2px solid black;
+  padding: 10px;
+  margin: 10px;
+  /* add media stuff in */
+  width: 90px;
+}
+
+
+/********************* ARTICLES ************************/
+p, h3, h1 { 
+  color: black;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+.article-card{
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 20px 60px auto;
+  padding: 10px;
+  padding-top: 0;
+  text-decoration: none;
+}
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.post-by, .topic-stamp {
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+
