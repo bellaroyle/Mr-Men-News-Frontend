@@ -12,7 +12,6 @@ class Topics extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         getTopics().then(topics => {
             this.setState({ topics })
 

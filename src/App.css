@@ -1,7 +1,7 @@
 .App, html {
   text-align: center;
   color: black;
-  background-color: rgb(238, 238, 238);
+  background-color:#ececec;
 
 }
 body {
@@ -51,11 +51,12 @@ ul {
   text-decoration: none;
   background-color: white;
 }
-.card-header {
+.card-header, .card-footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+
 
 span.MuiButton-label {
   font-size: 12px;
@@ -70,7 +71,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text {
 }
 div.MuiCardContent-root {
   padding: 5px 10px;
-  /* margin: 5px; */
+  padding-bottom: 0;
 }
 div.MuiPaper-root.MuiCard-root.MuiPaper-outlined.MuiPaper-rounded {
   margin: 5px;
