@@ -1,11 +1,14 @@
 // import { getAllByAltText } from '@testing-library/react';
 import React, { Component } from 'react';
-import { getArticleById } from '../api'
+import { getArticleById, updateVote } from '../api'
 import { formatDate } from '../utils'
 import { Link } from '@reach/router'
 import { Card, CardActions, CardContent, Button } from '@material-ui/core/';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import IconButton from '@material-ui/core/IconButton';
+// import { KeyboardArrowUpIcon, KeyboardArrowDownIcon } from '@material-ui/icons'
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 class ArticleCard extends Component {
@@ -18,6 +21,14 @@ class ArticleCard extends Component {
             this.setState({ article, isLoading: false })
         })
     }
+
+    handleVote = (inc) => {
+        const { article_id } = this.state.article
+        updateVote(inc, article_id).then(article => {
+            this.setState({ article })
+        })
+    }
+
     render() {
         const {
             article_id,
@@ -45,28 +56,21 @@ class ArticleCard extends Component {
                         <p>{body}</p>
 
                         <div className='card-footer'>
-                            <p>{votes} Votes</p>
+                            <div className="votes-container">
+                                <IconButton aria-label="upVote" onClick={() => { this.handleVote(1) }}>
+                                    <ExpandLessIcon />
+                                </IconButton>
+                                <p>{votes} Votes</p>
+                                <IconButton aria-label="downVote" onClick={() => { this.handleVote(-1) }}>
+                                    <ExpandMoreIcon />
+                                </IconButton>
+                            </div>
                             <p>{comment_count} Comments</p>
                         </div>
                     </CardContent>
                 )}
             </Card>
-            // <Link to={`/articles/${article_id}`} key={article_id} style={{ textDecoration: 'none' }} >
-            //     <div className="article-card">
-            //         <div className='card-header'>
-            //             <p className="post-by">Posted by <strong>{author}</strong> on {formatDate(created_at)}</p>
-            //             <p className="topic-stamp">{capitalise(topic)}</p>
-            //         </div>
 
-            //         <h3>{title}</h3>
-            //         <p>{body}</p>
-
-            //         <div>
-
-            //         </div>
-            //     </div>
-
-            // </Link>
         );
     }
 }

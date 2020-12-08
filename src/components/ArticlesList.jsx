@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { getArticles } from '../api'
 import ArticleCard from './ArticleCard'
 import { capitalise } from '../utils'
-// import { getAllByAltText } from '@testing-library/react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class ArticlesList extends Component {

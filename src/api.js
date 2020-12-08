@@ -19,3 +19,10 @@ export const getArticleById = (articleId) => {
         return res.data.article
     })
 }
+
+export const updateVote = (inc_votes, article_id) => {
+    console.log(inc_votes)
+    return ncNewsApi.patch(`/articles/${article_id}`, { inc_votes }).then(res => {
+        return res.data.article
+    })
+}

@@ -71,10 +71,14 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-text {
 }
 div.MuiCardContent-root {
   padding: 5px 10px;
-  padding-bottom: 0;
 }
 div.MuiPaper-root.MuiCard-root.MuiPaper-outlined.MuiPaper-rounded {
   margin: 5px;
+}
+
+.votes-container {
+  display: flex;
+  flex-direction: row;
 }
 
 
