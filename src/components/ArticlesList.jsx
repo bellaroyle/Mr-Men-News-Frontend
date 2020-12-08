@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { getArticles } from '../api'
 import ArticleCard from './ArticleCard'
 import { capitalise } from '../utils'
-import { getAllByAltText } from '@testing-library/react';
+// import { getAllByAltText } from '@testing-library/react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class ArticlesList extends Component {
     state = {
         articles: [],
-        currentTopic: 'all'
+        currentTopic: 'all',
+        isLoading: true
     }
     componentDidMount() {
         const { topic_slug } = this.props
         getArticles(topic_slug).then((articles => {
-            this.setState({ articles })
+            this.setState({ articles, isLoading: false })
         }))
     }
     componentDidUpdate(prevProps, prevState) {
@@ -25,19 +27,24 @@ class ArticlesList extends Component {
     }
 
     render() {
-        const { articles } = this.state
+        const { articles, isLoading } = this.state
         const { topic_slug } = this.props
-        return (
-            <>
-                <h2>{capitalise(topic_slug)}</h2>
-                <ul>
-                    {articles.map(article => {
-                        return <ArticleCard article_id={article.article_id} key={article.article_id} />
-                    })}
-                </ul>
-            </>
+        if (isLoading) {
+            return <CircularProgress />
+        }
+        else {
+            return (
+                <>
+                    <h2>{capitalise(topic_slug)}</h2>
+                    <ul id="article-card-container">
+                        {articles.map(article => {
+                            return <ArticleCard article_id={article.article_id} key={article.article_id} />
+                        })}
+                    </ul>
+                </>
 
-        );
+            );
+        }
     }
 }
 

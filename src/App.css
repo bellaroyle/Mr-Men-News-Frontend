@@ -1,10 +1,11 @@
-.App {
+.App, html {
   text-align: center;
   color: black;
+  background-color: rgb(238, 238, 238);
 
 }
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 /********************* HEADER ************************/
 
@@ -13,18 +14,24 @@ nav {
   display:flex;
   flex-direction: row;
   justify-content: center;
+  /* max-width: 75%;
+  margin: 0 auto; */
 
 }
-nav button {
-  background-color: white;
-  border: 2px solid black;
-  padding: 10px;
-  margin: 10px;
-  /* add media stuff in */
-  width: 90px;
+
+.nav-buttons {
+  /* background-color: pink; */
+  text-decoration: none;
+  /* width: 150px; */
 }
+.nav-buttons:hover {
+  background-color:green;
+}
+span.MuiTab-wrapper{color:black}
 
-
+span.MuiTab-wrapper:hover{
+  color:blue;
+}
 /********************* ARTICLES ************************/
 p, h3, h1 { 
   color: black;
@@ -32,6 +39,8 @@ p, h3, h1 {
 ul {
   list-style-type: none;
   padding: 0;
+  width: 75%;
+  margin: 0 auto;
 }
 .article-card{
   border: 1px solid black;
@@ -40,15 +49,31 @@ ul {
   padding: 10px;
   padding-top: 0;
   text-decoration: none;
+  background-color: white;
 }
 .card-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.post-by, .topic-stamp {
+
+span.MuiButton-label {
   font-size: 12px;
-  margin-top: 3px;
+  padding: 0;
+}
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text {
+  padding: 0;
+}
+.post-by{
+  font-size: 12px;
+  margin: auto 0;
+}
+div.MuiCardContent-root {
+  padding: 5px 10px;
+  /* margin: 5px; */
+}
+div.MuiPaper-root.MuiCard-root.MuiPaper-outlined.MuiPaper-rounded {
+  margin: 5px;
 }
 
 
