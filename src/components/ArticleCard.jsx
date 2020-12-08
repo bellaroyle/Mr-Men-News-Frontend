@@ -5,10 +5,8 @@ import { formatDate } from '../utils'
 import { Link } from '@reach/router'
 import { Card, CardActions, CardContent, Button } from '@material-ui/core/';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import IconButton from '@material-ui/core/IconButton';
-// import { KeyboardArrowUpIcon, KeyboardArrowDownIcon } from '@material-ui/icons'
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Vote from './Vote'
+
 
 
 class ArticleCard extends Component {
@@ -56,15 +54,7 @@ class ArticleCard extends Component {
                         <p>{body}</p>
 
                         <div className='card-footer'>
-                            <div className="votes-container">
-                                <IconButton aria-label="upVote" onClick={() => { this.handleVote(1) }}>
-                                    <ExpandLessIcon />
-                                </IconButton>
-                                <p>{votes} Votes</p>
-                                <IconButton aria-label="downVote" onClick={() => { this.handleVote(-1) }}>
-                                    <ExpandMoreIcon />
-                                </IconButton>
-                            </div>
+                            <Vote handleVote={this.handleVote} votes={votes} />
                             <p>{comment_count} Comments</p>
                         </div>
                     </CardContent>
