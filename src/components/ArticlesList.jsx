@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { getArticles } from '../api'
-import ArticleCard from './ArticleCard'
+import Article from './Article'
 import { capitalise } from '../utils'
 import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 class ArticlesList extends Component {
     state = {
@@ -25,6 +26,7 @@ class ArticlesList extends Component {
         }
     }
 
+
     render() {
         const { articles, isLoading } = this.state
         const { topic_slug } = this.props
@@ -37,7 +39,7 @@ class ArticlesList extends Component {
                     <h2>{capitalise(topic_slug)}</h2>
                     <ul id="article-card-container">
                         {articles.map(article => {
-                            return <ArticleCard article_id={article.article_id} key={article.article_id} />
+                            return <Article article_id={article.article_id} key={article.article_id} />
                         })}
                     </ul>
                 </>

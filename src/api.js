@@ -25,3 +25,19 @@ export const updateVote = (inc_votes, article_id) => {
         return res.data.article
     })
 }
+
+export const getComments = (article_id) => {
+    return ncNewsApi.get(`/articles/${article_id}/comments`, { params: { limit: 5 } }).then(res => {
+        return res.data.comments
+    })
+}
+export const getCommentById = (comment_id) => {
+    return ncNewsApi.get(`/comments/${comment_id}`).then(res => {
+        return res.data.comment
+    })
+}
+export const updateCommentVote = (inc_votes, comment_id) => {
+    return ncNewsApi.patch(`/comments/${comment_id}`, { inc_votes }).then(res => {
+        return res.data.comment
+    })
+}

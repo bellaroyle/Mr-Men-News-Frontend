@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router'
 import { getTopics } from '../api'
-import { capitalise } from '../utils'
-import Button from '@material-ui/core/Button'
 import { Tab, Tabs, Paper } from '@material-ui/core'
 
 
