@@ -6,7 +6,7 @@ import CommentCard from './CommentCard'
 class Comments extends Component {
     state = { comments: [] }
     componentDidMount() {
-        getComments(this.props.article_id).then(comments => {
+        getComments(this.props.article_id, this.props.limit).then(comments => {
             this.setState({ comments })
         })
     }

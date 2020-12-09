@@ -26,8 +26,8 @@ export const updateVote = (inc_votes, article_id) => {
     })
 }
 
-export const getComments = (article_id) => {
-    return ncNewsApi.get(`/articles/${article_id}/comments`, { params: { limit: 5 } }).then(res => {
+export const getComments = (article_id, limit) => {
+    return ncNewsApi.get(`/articles/${article_id}/comments`, { params: { limit } }).then(res => {
         return res.data.comments
     })
 }

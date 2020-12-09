@@ -17,21 +17,21 @@ class Article extends Component {
 
     handleVote = (inc) => {
         const { article_id } = this.state.article
-        updateVote(inc, article_id).then(article => {
-            this.setState((currState) => {
-                const { votes, ...restOfArticle } = currState.article
-                const newState = {
-                    article: { ...restOfArticle, votes: article.votes },
-                    isLoading: false
-                }
-                return newState
-            })
+        this.setState((currState) => {
+            const { votes, ...restOfArticle } = currState.article
+            const newState = {
+                article: { ...restOfArticle, votes: votes + inc },
+                isLoading: false
+            }
+            return newState
         })
+        updateVote(inc, article_id)
+
     }
 
     render() {
         if (!this.state.isLoading) {
-            return <ArticleCard article={this.state.article} handleVote={this.handleVote} />
+            return <ArticleCard article={this.state.article} handleVote={this.handleVote} limit={this.props.limit} />
         }
         else return <></>
     }

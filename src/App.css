@@ -60,6 +60,12 @@ ul {
 .card-header a:hover {
   color:#f3007a;
 }
+.card-title{
+  color:black;
+}
+.card-title:hover{
+  color:#f3007a;
+}
 .post-by {
   display:flex;
   flex-direction:row;
@@ -126,4 +132,8 @@ button.MuiButtonBase-root.MuiIconButton-root:focus {
   display: flex;
   flex-direction: row-reverse;
   justify-content:center;
+}
+/********************* single article page ************************/
+#single-article {
+  width: 75%;
 }

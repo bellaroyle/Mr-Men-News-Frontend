@@ -62,8 +62,10 @@ export default function ArticleCard(props) {
                     <Link to={`/topics/${topic}`} style={{ textDecoration: 'none' }}>{capitalise(topic)}</Link>
 
                 </div>
+                <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }} className="card-title">
+                    <h3>{title}</h3>
+                </Link>
 
-                <h3>{title}</h3>
                 <p className="article-body">{body}</p>
 
             </CardContent>
@@ -91,7 +93,8 @@ export default function ArticleCard(props) {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Comments article_id={article_id} />
+                    <p>Showing {props.limit ? 'All' : '5'} comments</p>
+                    <Comments article_id={article_id} limit={props.limit || '5'} />
                 </CardContent>
             </Collapse>
         </Card>

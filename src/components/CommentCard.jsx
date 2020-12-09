@@ -13,10 +13,14 @@ class CommentCard extends Component {
     }
     handleVote = (inc) => {
         const { comment_id } = this.state.comment
-        updateCommentVote(inc, comment_id).then(comment => {
-            console.log(comment)
-            this.setState({ comment })
+        this.setState((currState) => {
+            const { votes, ...restOfComment } = currState.comment
+            const newState = {
+                comment: { ...restOfComment, votes: votes + inc }
+            }
+            return newState
         })
+        updateCommentVote(inc, comment_id)
     }
     render() {
         const {
