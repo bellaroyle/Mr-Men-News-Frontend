@@ -4,7 +4,7 @@ import { Link } from '@reach/router'
 const Header = () => {
     return (
         <Link to="/" style={{ textDecoration: 'none' }}>
-            <h1>NC-News</h1>
+            <h1>Mr Men News</h1>
         </Link>
     );
 };

@@ -3,6 +3,7 @@ import { getArticles } from '../api'
 import Article from './Article'
 import { capitalise } from '../utils'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import SortBy from './SortBy'
 
 
 class ArticlesList extends Component {
@@ -25,6 +26,13 @@ class ArticlesList extends Component {
             })
         }
     }
+    addToQuery = (toSortBy) => {
+        const sortArray = toSortBy.split(' ')
+        const { topic_slug } = this.props
+        getArticles(topic_slug, sortArray[0], sortArray[1]).then(articles => {
+            this.setState({ articles })
+        })
+    }
 
 
     render() {
@@ -37,6 +45,7 @@ class ArticlesList extends Component {
             return (
                 <>
                     <h2>{capitalise(topic_slug)}</h2>
+                    <SortBy addToQuery={this.addToQuery} />
                     <ul id="article-card-container">
                         {articles.map(article => {
                             return <Article article_id={article.article_id} key={article.article_id} />
