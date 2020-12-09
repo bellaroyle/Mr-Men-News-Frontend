@@ -15,8 +15,9 @@ import { Link } from '@reach/router'
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        width: '75%',
         maxWidth: '100%',
-        margin: 10,
+        margin: '10px auto',
 
     },
     expand: {
@@ -28,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)',
+    },
+    p: {
+        margin: 0,
     },
 }));
 
@@ -44,12 +48,18 @@ export default function ArticleCard(props) {
         topic,
         votes
     } = props.article
+    let commentLimit = props.limit
     // const avatarUrl = getUser(author).then((user) => {
     //     return <Avatar src={user.avatar_url} alt={`${author}'s avatar`} />
     // })
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+    // const updateLimit = () => {
+    //     console.log(commentLimit)
+    //     commentLimit = '100'
+    //     console.log(commentLimit)
+    // }
 
     return (
         <Card className={classes.root} id="article-card">
@@ -93,10 +103,12 @@ export default function ArticleCard(props) {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <p>Showing {props.limit ? 'All' : '5'} comments</p>
-                    <Comments article_id={article_id} limit={props.limit || '5'} />
+                    <p id="showing_info">Showing {props.limit ? 'All' : '5'} Comments</p>
+                    <Comments article_id={article_id} limit={commentLimit || '5'} />
+                    {(props.limit ? <></> : <p id="see-entire-article" > To see all comments, <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }} >view the article here</Link></p>)}
+
                 </CardContent>
             </Collapse>
-        </Card>
+        </Card >
     );
 }

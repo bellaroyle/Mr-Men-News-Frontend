@@ -38,7 +38,6 @@ span.MuiTab-wrapper:hover{
 ul {
   list-style-type: none;
   padding: 0;
-  width: 75%;
   margin: 0 auto;
 }
 
@@ -119,9 +118,22 @@ button.MuiButtonBase-root.MuiIconButton-root:focus {
   background-color: white;
 }
 
-
+#see-entire-article {
+  font-size: 14px;
+}
+#see-entire-article a{
+  color:black;
+  font-weight:bold;
+}
+#see-entire-article a:hover,
+#see-entire-article a:focus {
+  color: #f3007a;
+}
 
 /********************* Comments ************************/
+#showing-info {
+  margin-top: 0;
+}
 .comment-body {
   font-size:14px;
   text-align:left;

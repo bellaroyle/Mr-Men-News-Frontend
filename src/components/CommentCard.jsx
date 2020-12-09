@@ -3,6 +3,8 @@ import { getCommentById, updateCommentVote } from '../api';
 import { Card, CardContent } from '@material-ui/core/';
 import { formatDate } from '../utils'
 import Vote from './Vote'
+import { Link } from '@reach/router'
+import AvatarDisplay from './AvatarDisplay'
 
 class CommentCard extends Component {
     state = { comment: {} }
@@ -34,7 +36,10 @@ class CommentCard extends Component {
             <Card key={comment_id}>
                 <CardContent >
                     <div className='card-header'>
-                        <p className="post-by">Comment by <strong>{author}</strong> on {formatDate(created_at)}</p>
+                        <div className="post-by">
+                            <AvatarDisplay author={author} />
+                            <p><Link to={`/users/${author}`} style={{ textDecoration: 'none' }} > {author}</Link> <br />{formatDate(created_at)}</p>
+                        </div>
                         <Vote handleVote={this.handleVote} votes={votes} />
                     </div>
                     <p className="comment-body">{body}</p>
