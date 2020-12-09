@@ -7,11 +7,10 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import AvatarDisplay from './AvatarDisplay'
 import Vote from './Vote'
 import Comments from './Comments'
-import Button from '@material-ui/core/Button';
-import { formatDate } from '../utils'
+import { formatDate, capitalise } from '../utils'
 import { Link } from '@reach/router'
 
 const useStyles = makeStyles((theme) => ({
@@ -45,7 +44,9 @@ export default function ArticleCard(props) {
         topic,
         votes
     } = props.article
-
+    // const avatarUrl = getUser(author).then((user) => {
+    //     return <Avatar src={user.avatar_url} alt={`${author}'s avatar`} />
+    // })
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -54,8 +55,11 @@ export default function ArticleCard(props) {
         <Card className={classes.root} id="article-card">
             <CardContent >
                 <div className='card-header'>
-                    <p className="post-by">Posted by <strong>{author}</strong> on {formatDate(created_at)}</p>
-                    <Link to={`/topics/${topic}`} style={{ textDecoration: 'none' }}><Button>{topic}</Button></Link>
+                    <div className="post-by">
+                        <AvatarDisplay author={author} />
+                        <p><Link to={`/users/${author}`} style={{ textDecoration: 'none' }} > {author}</Link> <br />{formatDate(created_at)}</p>
+                    </div>
+                    <Link to={`/topics/${topic}`} style={{ textDecoration: 'none' }}>{capitalise(topic)}</Link>
 
                 </div>
 

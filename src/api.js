@@ -41,3 +41,9 @@ export const updateCommentVote = (inc_votes, comment_id) => {
         return res.data.comment
     })
 }
+
+export const getUser = (username) => {
+    return ncNewsApi.get(`/users/${username}`).then(res => {
+        return res.data.user
+    })
+}
