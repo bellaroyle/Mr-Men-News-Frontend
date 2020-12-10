@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
+    p: {
+        maxHeight: 50,
+        overflow: 'hidden',
+    },
     // pos: {
     //     marginBottom: 1,
     // },
