@@ -154,3 +154,24 @@ button.MuiButtonBase-root.MuiIconButton-root:focus {
 #single-article {
   width: 75%;
 }
+
+/********************* Error Page ************************/
+#error-container {
+  background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 70%;
+  border-radius: 5px;
+  padding: 20px;
+  flex-wrap: wrap;
+
+}
+
+.error-message {
+  color: black;
+  font-size: 30px;
+}

@@ -48,19 +48,11 @@ export default function ArticleCard(props) {
         topic,
         votes
     } = props.article
+    console.log(props)
     let commentLimit = props.limit
-    // const avatarUrl = getUser(author).then((user) => {
-    //     return <Avatar src={user.avatar_url} alt={`${author}'s avatar`} />
-    // })
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-    // const updateLimit = () => {
-    //     console.log(commentLimit)
-    //     commentLimit = '100'
-    //     console.log(commentLimit)
-    // }
-
     return (
         <Card className={classes.root} id="article-card">
             <CardContent >
@@ -79,36 +71,52 @@ export default function ArticleCard(props) {
                 <p className="article-body">{body}</p>
 
             </CardContent>
-            <CardActions disableSpacing>
-                <div id='card-footer'>
-                    <div id="vote-buttons">
+            {!props.limit ? <>
+                <CardActions disableSpacing>
+                    <div id='card-footer'>
+                        <div id="vote-buttons">
 
 
-                        <Vote handleVote={props.handleVote} votes={votes} />
-                    </div>
-                    <div id='comment-dropdown'>
-                        <p>{comment_count} Comments
+                            <Vote handleVote={props.handleVote} votes={votes} />
+                        </div>
+                        <div id='comment-dropdown'>
+                            <p>{comment_count} Comments
                     <IconButton
-                                className={clsx(classes.expand, {
-                                    [classes.expandOpen]: expanded,
-                                })}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon fontSize="large" id="show-comments" />
-                            </IconButton></p>
+                                    className={clsx(classes.expand, {
+                                        [classes.expandOpen]: expanded,
+                                    })}
+                                    onClick={handleExpandClick}
+                                    aria-expanded={expanded}
+                                    aria-label="show more"
+                                >
+                                    <ExpandMoreIcon fontSize="large" id="show-comments" />
+                                </IconButton></p>
+                        </div>
                     </div>
-                </div>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                        <p id="showing_info">Showing {props.limit ? 'All' : '5'} Comments</p>
+                        <Comments article_id={article_id} limit={commentLimit || '5'} />
+                        {(props.limit ? <></> : <p id="see-entire-article" > To see all comments, <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }} >view the article here</Link></p>)}
+
+                    </CardContent>
+                </Collapse>
+            </>
+                : <>
+                    <div id='card-footer'>
+                        <div id="vote-buttons">
+
+
+                            <Vote handleVote={props.handleVote} votes={votes} />
+                        </div>
+                        <p>{comment_count} Comments</p>
+                    </div>
                     <p id="showing_info">Showing {props.limit ? 'All' : '5'} Comments</p>
                     <Comments article_id={article_id} limit={commentLimit || '5'} />
                     {(props.limit ? <></> : <p id="see-entire-article" > To see all comments, <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }} >view the article here</Link></p>)}
-
-                </CardContent>
-            </Collapse>
+                </>
+            }
         </Card >
     );
 }
