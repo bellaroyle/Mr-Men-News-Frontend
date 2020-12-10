@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
 import { getUser } from '../api'
+import ErrorPage from './ErrorPage'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-/**
- * {
-    "username": "jessjelly",
-    "avatar_url": "https://vignette.wikia.nocookie.net/mrmen/images/4/4f/MR_JELLY_4A.jpg/revision/latest?cb=20180104121141",
-    "name": "Jess Jelly"
-  }
- */
 
 class UserProfile extends Component {
-    state = { user: {}, isLoading: false }
+    state = {
+        user: {},
+        isLoading: false,
+        hasError: false,
+        errorMessage: ''
+    }
     componentDidMount() {
         getUser(this.props.username).then(user => {
-
             this.setState({ user, isLoading: false })
         })
+            .catch(err => {
+                const { response: { status, data: { msg } }, } = err
+                this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+            })
     }
     render() {
         const { username, avatar_url, name } = this.state.user
-        if (!this.state.isLoading) {
+        if (this.state.hasError) {
+            return <ErrorPage errorMessage={this.state.errorMessage} />
+        }
+        else if (!this.state.isLoading) {
             return (
                 <div id="user-info-container">
                     <h2>{username} <span id="name">{`(${name})`}</span></h2>
@@ -27,6 +33,7 @@ class UserProfile extends Component {
                 </div>
             );
         }
+        else return <CircularProgress />
 
     }
 }

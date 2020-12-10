@@ -17,7 +17,6 @@ class Article extends Component {
             this.setState({ article, isLoading: false })
         })
             .catch(err => {
-                console.dir(err)
                 const { response: { status, data: { msg } }, } = err
                 this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
             })
@@ -34,6 +33,10 @@ class Article extends Component {
             return newState
         })
         updateVote(inc, article_id)
+            .catch(err => {
+                const { response: { status, data: { msg } }, } = err
+                this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+            })
 
     }
 

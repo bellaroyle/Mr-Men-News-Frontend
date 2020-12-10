@@ -5,13 +5,22 @@ import { formatDate } from '../utils'
 import Vote from './Vote'
 import { Link } from '@reach/router'
 import AvatarDisplay from './AvatarDisplay'
+import ErrorPage from './ErrorPage'
 
 class CommentCard extends Component {
-    state = { comment: {} }
+    state = {
+        comment: {},
+        hasError: false,
+        errorMessage: ''
+    }
     componentDidMount() {
         getCommentById(this.props.comment_id).then(comment => {
             this.setState({ comment })
         })
+            .catch(err => {
+                const { response: { status, data: { msg } }, } = err
+                this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+            })
     }
     handleVote = (inc) => {
         const { comment_id } = this.state.comment
@@ -23,6 +32,10 @@ class CommentCard extends Component {
             return newState
         })
         updateCommentVote(inc, comment_id)
+            .catch(err => {
+                const { response: { status, data: { msg } }, } = err
+                this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+            })
     }
     render() {
         const {
@@ -32,7 +45,10 @@ class CommentCard extends Component {
             created_at,
             votes
         } = this.state.comment
-        return (
+        if (this.state.hasError) {
+            return <ErrorPage errorMessage={this.state.errorMessage} />
+        }
+        else return (
             <Card key={comment_id}>
                 <CardContent >
                     <div className='card-header'>

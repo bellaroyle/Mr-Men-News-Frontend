@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Link } from '@reach/router'
 import { getTopics } from '../api'
 import { Tab, Tabs, Paper } from '@material-ui/core'
-
+import ErrorPage from './ErrorPage'
 
 class Topics extends Component {
     state = {
-        topics: []
+        topics: [],
+        hasError: false,
+        errorMessage: ''
     }
 
     componentDidMount() {
@@ -14,11 +16,18 @@ class Topics extends Component {
             this.setState({ topics })
 
         })
+            .catch(err => {
+                const { response: { status, data: { msg } }, } = err
+                this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+            })
     }
 
     render() {
-        const { topics } = this.state
-        return (
+        const { topics, hasError, errorMessage } = this.state
+        if (hasError) {
+            return <ErrorPage errorMessage={errorMessage} />
+        }
+        else return (
             <nav>
                 {/* want to implement: underline the tab we are currently on- look at material ui docs  */}
                 <Paper>

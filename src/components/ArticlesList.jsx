@@ -4,19 +4,26 @@ import Article from './Article'
 import { capitalise } from '../utils'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SortBy from './SortBy'
+import ErrorPage from './ErrorPage'
 
 
 class ArticlesList extends Component {
     state = {
         articles: [],
         currentTopic: 'all',
-        isLoading: true
+        isLoading: true,
+        hasError: false,
+        errorMessage: ''
     }
     componentDidMount() {
         const { topic_slug } = this.props
         getArticles(topic_slug).then((articles => {
             this.setState({ articles, isLoading: false })
         }))
+            .catch(err => {
+                const { response: { status, data: { msg } }, } = err
+                this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+            })
     }
     componentDidUpdate(prevProps, prevState) {
         const newTopic = prevProps.topic_slug !== this.props.topic_slug
@@ -24,6 +31,10 @@ class ArticlesList extends Component {
             getArticles(this.props.topic_slug).then(articles => {
                 this.setState({ articles })
             })
+                .catch(err => {
+                    const { response: { status, data: { msg } }, } = err
+                    this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+                })
         }
     }
     addToQuery = (toSortBy) => {
@@ -32,13 +43,20 @@ class ArticlesList extends Component {
         getArticles(topic_slug, sortArray[0], sortArray[1]).then(articles => {
             this.setState({ articles })
         })
+            .catch(err => {
+                const { response: { status, data: { msg } }, } = err
+                this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+            })
     }
 
 
     render() {
-        const { articles, isLoading } = this.state
+        const { articles, isLoading, hasError } = this.state
         const { topic_slug } = this.props
-        if (isLoading) {
+        if (hasError) {
+            return <ErrorPage errorMessage={this.state.errorMessage} />
+        }
+        else if (isLoading) {
             return <CircularProgress />
         }
         else {
