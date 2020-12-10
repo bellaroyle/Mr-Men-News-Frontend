@@ -9,8 +9,11 @@ export const getTopics = () => {
         return res.data.topics
     })
 }
-export const getArticles = (topic, sort_by, order) => {
-    return ncNewsApi.get('/articles', { params: { topic, sort_by, order } }).then(res => {
+export const getArticles = (topic, sort_by, order, author) => {
+    if (topic === 'all') {
+        topic = null
+    }
+    return ncNewsApi.get('/articles', { params: { topic, sort_by, order, author, limit: 1000 } }).then(res => {
         return res.data.articles
     })
 }

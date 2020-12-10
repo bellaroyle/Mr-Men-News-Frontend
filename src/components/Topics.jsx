@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router'
 import { getTopics } from '../api'
-import { Tab, Tabs, Paper } from '@material-ui/core'
 import ErrorPage from './ErrorPage'
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 class Topics extends Component {
+    // const [value, setValue] = React.useState(2);
     state = {
         topics: [],
+        topic: 'all',
+        value: 0,
         hasError: false,
         errorMessage: ''
     }
-
     componentDidMount() {
         getTopics().then(topics => {
             this.setState({ topics })
@@ -22,45 +25,44 @@ class Topics extends Component {
             })
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        const newTopic = this.state.topic !== prevState.topic
+        if (newTopic) {
+            this.props.changeTopic(this.state.topic)
+        }
+    }
+
+    handleChange = (event, newValue) => {
+        const topic = event.target.innerText.toLowerCase()
+        this.setState({ value: newValue, topic })
+    };
     render() {
-        const { topics, hasError, errorMessage } = this.state
+        const {
+            topics,
+            value,
+            hasError,
+            errorMessage
+        } = this.state
         if (hasError) {
             return <ErrorPage errorMessage={errorMessage} />
         }
         else return (
-            <nav>
-                {/* want to implement: underline the tab we are currently on- look at material ui docs  */}
-                <Paper>
-                    <Tabs
-                        // value={value}
-                        // onChange={handleChange}
-                        indicatorColor="primary"
-                        textColor="primary"
-                        centered
-                    >
-                        <Link to='/' style={{ textDecoration: 'none' }}>
-                            <Tab label="All" classes={{ label: 'nav-buttons' }} />
-                        </Link>
-
-                        {topics.map(topic => {
-                            return (
-                                <Link
-                                    to={`/topics/${topic.slug}`}
-                                    key={topic.slug}
-                                    style={{
-                                        textDecoration: 'none'
-                                    }}
-                                    classes={{ label: 'nav-buttons' }}
-                                >
-                                    <Tab label={topic.slug} classes={{ label: 'nav-buttons' }} />
-                                </Link>
-                            )
-                        })}
-                    </Tabs>
-                </Paper>
-            </nav>
-        )
+            <Paper id="topics-bar">
+                <Tabs
+                    value={value}
+                    indicatorColor="secondary"
+                    textColor="secondary"
+                    onChange={this.handleChange}
+                >
+                    <Tab label="All" key="all" />
+                    {topics.map(topic => {
+                        return (
+                            <Tab label={topic.slug} key={topic.slug} />
+                        )
+                    })}
+                </Tabs>
+            </Paper >
+        );
     }
 }
-
 export default Topics;

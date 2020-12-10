@@ -1,7 +1,7 @@
 .App, html {
   text-align: center;
   color: #F8F5F8;
-  background-color:#383142;
+  background-color:#392f47;
 
 }
 body {
@@ -147,13 +147,43 @@ button.MuiButtonBase-root.MuiIconButton-root:focus {
 /********************* UserPage ************************/
 #user-info-container{
   display: flex;
-  flex-direction: row-reverse;
-  justify-content:center;
+  width: 75%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  justify-content:flex-start
+}
+#name-and-username{
+  padding: 20px;
+  padding-top: 10px;
+  text-align: left;
+}
+#topics-and-sortBy{
+  max-width: 75%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  justify-content: space-evenly;
+  flex-wrap:flex;
+
 }
 /********************* single article page ************************/
 #single-article {
   width: 75%;
 }
+#avatar-img-container{
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  background-color: white;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* #avatar-img-container img{
+  padding: 20px;
+} */
+
 
 /********************* Error Page ************************/
 #error-container {

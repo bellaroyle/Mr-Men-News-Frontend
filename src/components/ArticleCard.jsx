@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    p: {
-        margin: 0,
-    },
+    // pos: {
+    //     marginBottom: 1,
+    // },
 }));
 
 export default function ArticleCard(props) {
@@ -48,7 +48,7 @@ export default function ArticleCard(props) {
         topic,
         votes
     } = props.article
-    console.log(props)
+    // console.log(props)
     let commentLimit = props.limit
     const handleExpandClick = () => {
         setExpanded(!expanded);
