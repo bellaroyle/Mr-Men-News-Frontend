@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { getCommentById, updateCommentVote } from '../api';
+import { getCommentById, updateCommentVote, deleteComment } from '../api';
 import { Card, CardContent } from '@material-ui/core/';
 import { formatDate } from '../utils'
 import Vote from './Vote'
 import { Link } from '@reach/router'
 import AvatarDisplay from './AvatarDisplay'
 import ErrorPage from './ErrorPage'
+import { UserContext } from '../contexts/User'
 
 class CommentCard extends Component {
     state = {
@@ -38,6 +39,17 @@ class CommentCard extends Component {
                 this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
             })
     }
+    handleDelete = () => {
+        const { comment_id } = this.state.comment
+
+        this.props.removeComment(comment_id)
+        // deleteComment(comment_id)
+        //     .catch(err => {
+        //         const { response: { status, data: { msg } }, } = err
+        //         this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+        //     })
+
+    }
     render() {
         const {
             author,
@@ -63,11 +75,14 @@ class CommentCard extends Component {
                         <Vote handleVote={this.handleVote} votes={votes} />
                     </div>
                     <p className="comment-body">{body}</p>
-
+                    {(this.context.loggedInUser === author ? (
+                        <button onClick={this.handleDelete} id="delete-comment-button">Delete Comment</button>
+                    ) : null)}
                 </CardContent>
             </Card>
         );
     }
 }
+CommentCard.contextType = UserContext
 
 export default CommentCard;

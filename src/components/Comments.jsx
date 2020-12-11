@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getComments, postComment } from '../api'
+import { getComments, postComment, deleteComment } from '../api'
 import CommentCard from './CommentCard'
 import CommentAdder from './CommentAdder'
 import ErrorPage from './ErrorPage'
@@ -27,6 +27,7 @@ class Comments extends Component {
 
 
     addComment = (comment) => {
+        // this.props.updateCommentCount(1)
         const { article_id } = this.props
         const { loggedInUser } = this.context
         postComment(comment, loggedInUser, article_id).then(comment => {
@@ -36,7 +37,21 @@ class Comments extends Component {
                 }
             })
         })
+    }
+    removeComment = (commentId) => {
+        // this.props.updateCommentCount(-1)
+        this.setState(currState => {
+            const newComments = currState.comments.filter(comment => {
+                return comment.comment_id !== commentId
+            })
+            return { comments: [...newComments] }
+        })
 
+        deleteComment(commentId)
+            .catch(err => {
+                const { response: { status, data: { msg } }, } = err
+                this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+            })
     }
 
     render() {
@@ -51,7 +66,7 @@ class Comments extends Component {
             <div className="comment-container">
                 <CommentAdder addComment={this.addComment} />
                 {comments.map(comment => {
-                    return <CommentCard key={comment.comment_id} comment_id={comment.comment_id} />
+                    return <CommentCard key={comment.comment_id} comment_id={comment.comment_id} removeComment={this.removeComment} />
                 })}
             </div>
         );

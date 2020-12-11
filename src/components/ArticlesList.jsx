@@ -40,24 +40,12 @@ class ArticlesList extends Component {
                     this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
                 })
         }
-    }
-    // addToQuery = (toSortBy) => {
-    //     const sortArray = toSortBy.split(' ')
-    //     const { topic_slug } = this.props
-    //     getArticles(topic_slug, sortArray[0], sortArray[1]).then(articles => {
-    //         this.setState({ articles })
-    //     })
-    //         .catch(err => {
-    //             const { response: { status, data: { msg } }, } = err
-    //             this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
-    //         })
-    // }
+    } s
     changeTopic = (topic) => {
         this.setState({ topic })
     }
     changeSort = (sort) => {
         const sortArray = sort.split(' ')
-
         this.setState({ sort_by: sortArray[0], order: sortArray[1] })
     }
 
@@ -77,11 +65,13 @@ class ArticlesList extends Component {
                 <>
                     <div id='topics-and-sortBy'>
                         <Topics changeTopic={this.changeTopic} />
+                        <br />
                         <SortBy changeSort={this.changeSort} />
+                        <br />
                     </div>
                     <ul id="article-card-container">
                         {articles.map(article => {
-                            return <Article article_id={article.article_id} key={article.article_id} />
+                            return <Article article={article} key={article.article_id} />
                         })}
                     </ul>
                 </>

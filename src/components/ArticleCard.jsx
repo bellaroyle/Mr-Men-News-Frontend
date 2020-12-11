@@ -1,4 +1,5 @@
 import React from 'react';
+// import { useForceUpdate } from '../hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -18,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
         width: '75%',
         maxWidth: '100%',
         margin: '10px auto',
-
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -31,18 +31,18 @@ const useStyles = makeStyles((theme) => ({
         transform: 'rotate(180deg)',
     },
     p: {
-        maxHeight: 50,
+        maxHeight: '500px',
         overflow: 'hidden',
     },
-    // pos: {
-    //     marginBottom: 1,
-    // },
+    pos: {
+        marginBottom: 1,
+    },
 }));
 
 export default function ArticleCard(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    const {
+    let {
         article_id,
         author,
         body,
@@ -52,11 +52,18 @@ export default function ArticleCard(props) {
         topic,
         votes
     } = props.article
-    // console.log(props)
     let commentLimit = props.limit
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    // const updateCommentCount = (inc) => {
+    //     console.log(comment_count)
+    //     comment_count = inc + parseInt(comment_count)
+    //     console.log(comment_count)
+
+    // }
+
     return (
         <Card className={classes.root} id="article-card">
             <CardContent >
@@ -101,8 +108,8 @@ export default function ArticleCard(props) {
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <p id="showing_info">Showing {props.limit ? 'All' : '5'} Comments</p>
-                        <Comments article_id={article_id} limit={commentLimit || '5'} />
-                        {(props.limit ? <></> : <p id="see-entire-article" > To see all comments, <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }} >view the article here</Link></p>)}
+                        <Comments article_id={article_id} limit={commentLimit || '5'} updateCommentCount={props.updateCommentCount} />
+                        {(props.limit ? null : <p id="see-entire-article" > To see all comments, <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }} >view the article here</Link></p>)}
 
                     </CardContent>
                 </Collapse>
@@ -114,11 +121,11 @@ export default function ArticleCard(props) {
 
                             <Vote handleVote={props.handleVote} votes={votes} />
                         </div>
-                        <p>{comment_count} Comments</p>
+                        <p id="comment-count-on-single-page">{comment_count} Comments</p>
                     </div>
-                    <p id="showing_info">Showing {props.limit ? 'All' : '5'} Comments</p>
-                    <Comments article_id={article_id} limit={commentLimit || '5'} />
-                    {(props.limit ? <></> : <p id="see-entire-article" > To see all comments, <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }} >view the article here</Link></p>)}
+                    <p id="showing_info">Showing All Comments</p>
+                    <Comments article_id={article_id} limit={commentLimit || '5'} updateCommentCount={props.updateCommentCount} />
+                    {/* {(props.limit ? null : <p id="see-entire-article" > To see all comments, <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }} >view the article here</Link></p>)} */}
                 </>
             }
         </Card >

@@ -13,15 +13,31 @@ class Article extends Component {
     }
 
     componentDidMount() {
-        getArticleById(this.props.article_id).then(article => {
-            this.setState({ article, isLoading: false })
-        })
-            .catch(err => {
+        if (this.props.article) {
+            this.setState({ article: this.props.article, isLoading: false })
+        }
+        else {
+            getArticleById(this.props.article_id).then(article => {
+                this.setState({ article, isLoading: false })
+            }).catch(err => {
                 const { response: { status, data: { msg } }, } = err
                 this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
             })
+        }
     }
+    // componentDidUpdate(prevProps, prevState) {
+    //     // console.log('updating')
+    //     // comemntcount updated then set state 
+    //     const commentsUpdated = prevState.article.comment_count === this.state.comment_count
+    //     if (commentsUpdated) {
+    //         // this.setState()
+    //         getArticleById(this.state.article.article_id).then(article => {
+    //             this.setState({ article, isLoading: false })
+    //         })
 
+
+    //     }
+    // }
     handleVote = (inc) => {
         const { article_id } = this.state.article
         this.setState((currState) => {
@@ -39,13 +55,23 @@ class Article extends Component {
             })
 
     }
+    // updateCommentCount = (inc) => {
+    //     const { comment_count } = this.state.article
+    //     let new_comment_count = inc + parseInt(comment_count)
+    //     new_comment_count = new_comment_count.toString()
+    //     this.setState(currState => {
+    //         const { comment_count, ...restOfArticle } = currState.article
+    //         return { article: { ...restOfArticle, new_comment_count } }
+    //     })
+
+    // }
 
     render() {
         if (this.state.hasError) {
             return <ErrorPage errorMessage={this.state.errorMessage} />
         }
         if (!this.state.isLoading) {
-            return <ArticleCard article={this.state.article} handleVote={this.handleVote} limit={this.props.limit} />
+            return <ArticleCard article={this.state.article} handleVote={this.handleVote} limit={this.props.limit} />//updateCommentCount={this.updateCommentCount} />
         }
         else return null
     }

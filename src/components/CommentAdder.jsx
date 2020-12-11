@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { UserContext } from '../contexts/User'
+import AvatarDisplay from './AvatarDisplay'
 
 class CommentAdder extends Component {
     state = {
@@ -22,17 +23,22 @@ class CommentAdder extends Component {
     render() {
         if (this.context.loggedInUser) {
             return (
-                <form onSubmit={this.handleSubmit}>
-                    <label>Commenting as {this.context.loggedInUser}:
+                <form onSubmit={this.handleSubmit} id="post-comment-form">
+                    {/* <label htmlFor='post-a-comment'>Commenting as {this.context.loggedInUser}: </label> */}
+
+
+                    <div id="post-comment-avatar" >
+                        <AvatarDisplay author={this.context.loggedInUser} />
+                    </div>
                     <textarea
-                            id="post-a-comment"
-                            rows='1' cols='40'
-                            value={this.state.comment}
-                            onChange={this.handleChange}>
-                        </textarea>
-                    </label>
+                        id="post-a-comment"
+                        rows='1' cols='40'
+                        value={this.state.comment}
+                        onChange={this.handleChange}>
+                    </textarea>
+
                     <button type='submit'>Post</button>
-                </form>
+                </form >
             );
         }
         else return (
