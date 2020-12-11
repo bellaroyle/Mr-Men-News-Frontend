@@ -11,11 +11,12 @@ class CommentCard extends Component {
     state = {
         comment: {},
         hasError: false,
-        errorMessage: ''
+        errorMessage: '',
+        isLoading: true
     }
     componentDidMount() {
         getCommentById(this.props.comment_id).then(comment => {
-            this.setState({ comment })
+            this.setState({ comment, isLoading: false })
         })
             .catch(err => {
                 const { response: { status, data: { msg } }, } = err
@@ -47,6 +48,9 @@ class CommentCard extends Component {
         } = this.state.comment
         if (this.state.hasError) {
             return <ErrorPage errorMessage={this.state.errorMessage} />
+        }
+        else if (this.state.isLoading) {
+            return <p>loading ...</p>
         }
         else return (
             <Card key={comment_id}>

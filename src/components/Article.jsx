@@ -47,7 +47,7 @@ class Article extends Component {
         if (!this.state.isLoading) {
             return <ArticleCard article={this.state.article} handleVote={this.handleVote} limit={this.props.limit} />
         }
-        else return <></>
+        else return null
     }
 }
 

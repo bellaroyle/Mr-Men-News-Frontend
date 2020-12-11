@@ -50,3 +50,8 @@ export const getUser = (username) => {
         return res.data.user
     })
 }
+export const postComment = (body, username, articleId) => {
+    return ncNewsApi.post(`/articles/${articleId}/comments`, { username, body }).then(res => {
+        return res.data.comment
+    })
+}

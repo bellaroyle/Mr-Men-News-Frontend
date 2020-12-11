@@ -41,17 +41,17 @@ class ArticlesList extends Component {
                 })
         }
     }
-    addToQuery = (toSortBy) => {
-        const sortArray = toSortBy.split(' ')
-        const { topic_slug } = this.props
-        getArticles(topic_slug, sortArray[0], sortArray[1]).then(articles => {
-            this.setState({ articles })
-        })
-            .catch(err => {
-                const { response: { status, data: { msg } }, } = err
-                this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
-            })
-    }
+    // addToQuery = (toSortBy) => {
+    //     const sortArray = toSortBy.split(' ')
+    //     const { topic_slug } = this.props
+    //     getArticles(topic_slug, sortArray[0], sortArray[1]).then(articles => {
+    //         this.setState({ articles })
+    //     })
+    //         .catch(err => {
+    //             const { response: { status, data: { msg } }, } = err
+    //             this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
+    //         })
+    // }
     changeTopic = (topic) => {
         this.setState({ topic })
     }

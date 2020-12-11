@@ -47,17 +47,6 @@ class UserProfile extends Component {
                 })
         }
     }
-    // addToQuery = (toSortBy) => {
-    //     const sortArray = toSortBy.split(' ')
-    //     const { topic_slug } = this.props
-    //     getArticles(topic_slug, sortArray[0], sortArray[1]).then(articles => {
-    //         this.setState({ articles })
-    //     })
-    //         .catch(err => {
-    //             const { response: { status, data: { msg } }, } = err
-    //             this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
-    //         })
-    // }
     changeTopic = (topic) => {
         this.setState({ topic })
     }
@@ -85,7 +74,7 @@ class UserProfile extends Component {
         else return (<>
             <div id="user-info-container">
                 <div id="avatar-img-container">
-                    <img src={avatar_url} alt={`${username}'s avatar`} height="130" ClassName="avatar-img" />
+                    <img src={avatar_url} alt={`${username}'s avatar`} height="130" className="avatar-img" />
                 </div>
                 <div id="name-and-username">
                     <h2>{username}</h2>
