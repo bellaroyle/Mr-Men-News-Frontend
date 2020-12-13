@@ -54,6 +54,8 @@ class SortBy extends Component {
             <Paper id="sort-bar" >
                 <Tabs
                     value={value}
+                    variant="scrollable"
+                    scrollButtons="on"
                     indicatorColor="secondary"
                     textColor="secondary"
                     onChange={this.handleChange}

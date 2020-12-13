@@ -8,15 +8,41 @@ body {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 /********************* HEADER ************************/
-h1 { 
+/* h1 { 
   color: #F8F5F8;
+} */
+#HEADER {
+  color:white;
+  /* font-size: 20px;
+  margin-top:0;
+  margin-bottom:0; */
 }
+#HEADER:hover,
+#HEADER:focus {
+  color:#F50057;
+}
+@media screen and (max-width: 341px) {
+  div.MuiFormGroup-root.makeStyles-loginToggle-5{
+    margin-top: 65px;
+  }
+
+}
+div.MuiToolbar-root.MuiToolbar-regular.MuiToolbar-gutters{
+  height: 64px;
+}
+
 #user-info-in-appbar{
   display:flex;
   flex-direction: row;
+  font-size:12px;
+  align-items:center;
+}
+#user-info-in-appbar p{
+  padding: 0 10px;
+  margin:0 0;
 }
 /********************* NAV-TOPICS ************************/
-nav {
+/* nav {
   display:flex;
   flex-direction: row;
   justify-content: center;
@@ -24,18 +50,21 @@ nav {
 
 .nav-buttons {
   text-decoration: none;
-}
+}*/
 
 span.MuiTab-wrapper{
   color:black;
 }
 
 span.MuiTab-wrapper:hover{
-  color:#b40042;
-}
+  color:#F50057;
+} 
 /* button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit {
   backgrounds-color: #79bfeb;
   border: 1px solid #383142;
+} */
+/* button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorSecondary{
+  padding: 0 0 ;
 } */
 /********************* ARTICLES-LIST ************************/
 
@@ -64,16 +93,16 @@ ul {
 .card-header a {
   font-size:12px;
   font-weight: bold;
-  color: #000000DE;
+  color: #000000;
 }
 .card-header a:hover {
-  color:#f3007a;
+  color:#F50057;
 }
 .card-title{
   color:black;
 }
 .card-title:hover{
-  color:#f3007a;
+  color:#F50057;
 }
 .post-by {
   display:flex;
@@ -119,7 +148,7 @@ ul {
 /* not working on focus */
 #show-comments:hover,
 #show-comments:focus {
-  color: #f3007a;
+  color: #F50057;
   transform: scale(1.3);
 }
 
@@ -137,7 +166,7 @@ button.MuiButtonBase-root.MuiIconButton-root:focus {
 }
 #see-entire-article a:hover,
 #see-entire-article a:focus {
-  color: #f3007a;
+  color: #F50057;
 }
 
 /********************* Comments ************************/
@@ -162,7 +191,7 @@ flex-shrink:1;
 
 #delete-comment-button:hover,
 #delete-comment-button:focus{
-  background-color:#f3007a;
+  background-color:#F50057;
   outline:none;
 }
 /********************* CommentAdder ************************/
@@ -200,7 +229,7 @@ flex-shrink:1;
 }
 #post-comment-form button:hover,
 #post-comment-form button:focus{
-  background-color:#f3007a;
+  background-color:#F50057;
   outline:none;
 }
 

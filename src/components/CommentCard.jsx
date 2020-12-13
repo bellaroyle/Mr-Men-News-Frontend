@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getCommentById, updateCommentVote, deleteComment } from '../api';
+import { getCommentById, updateCommentVote } from '../api';
 import { Card, CardContent } from '@material-ui/core/';
 import { formatDate } from '../utils'
 import Vote from './Vote'
@@ -41,14 +41,7 @@ class CommentCard extends Component {
     }
     handleDelete = () => {
         const { comment_id } = this.state.comment
-
         this.props.removeComment(comment_id)
-        // deleteComment(comment_id)
-        //     .catch(err => {
-        //         const { response: { status, data: { msg } }, } = err
-        //         this.setState({ hasError: true, errorMessage: `${status}! ${msg}` })
-        //     })
-
     }
     render() {
         const {

@@ -6,7 +6,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 class Topics extends Component {
-    // const [value, setValue] = React.useState(2);
     state = {
         topics: [],
         topic: 'all',
@@ -47,9 +46,12 @@ class Topics extends Component {
             return <ErrorPage errorMessage={errorMessage} />
         }
         else return (
+            // <div className={classes.root}>
             <Paper id="topics-bar">
                 <Tabs
                     value={value}
+                    variant="scrollable"
+                    scrollButtons="on"
                     indicatorColor="secondary"
                     textColor="secondary"
                     onChange={this.handleChange}
@@ -62,6 +64,7 @@ class Topics extends Component {
                     })}
                 </Tabs>
             </Paper >
+            // </div>
         );
     }
 }
