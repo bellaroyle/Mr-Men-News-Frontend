@@ -2,9 +2,9 @@
 
 - Full stack Reddit-style news application 
 - This is the frontend code for the app, built using React
-- [Click here](https://mr-men-news.netlify.app/) to see the hosted version of the app.
-- [Click here](https://github.com/bellaroyle/Mr-Men-News-Backend) to see the backend code code for the app
-<br>
+- [Click here](https://mr-men-news.netlify.app/) to see the **hosted** version of the app.
+- [Click here](https://github.com/bellaroyle/Mr-Men-News-Backend) to see the **backend code** code for the app
+
 <br>
 
 ### Some info about the app 
@@ -13,7 +13,7 @@
 - I made this using [Create React App](https://github.com/facebook/create-react-app)
 - The app is hosted using [netlify](https://www.netlify.com/)
 - I used some components from [Material-UI](https://material-ui.com) aswell as CSS to style the app, and some components from [Reach Router](https://reach.tech/router/) for functionality. 
-<br>
+
 <br>
 
 ### How to use repo
@@ -22,7 +22,7 @@
 - Run the command `npm install` in your terminal to install the dependencies
 - Run the command `npm start` to see the app in your browser on local a local host port. if you make any edits, the page will reload whenever you save the file you're working on. 
 <br>
-<br>
+
 
 ### Planned Improvements
 ---
