@@ -11,6 +11,7 @@
 ---
 - The app currently is logged in as 'cooljmessy' so that a user can see some of the functionality that comes with that such as posting and deleting comments 
 - I made this using [Create React App](https://github.com/facebook/create-react-app)
+- The app is hosted using [netlify](https://www.netlify.com/)
 - I used some components from [Material-UI](https://material-ui.com) aswell as CSS to style the app, and some components from [Reach Router](https://reach.tech/router/) for functionality. 
 <br>
 <br>
