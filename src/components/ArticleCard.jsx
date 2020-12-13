@@ -72,7 +72,7 @@ export default function ArticleCard(props) {
                         <AvatarDisplay author={author} />
                         <p><Link to={`/users/${author}`} style={{ textDecoration: 'none' }} > {author}</Link> <br />{formatDate(created_at)}</p>
                     </div>
-                    <Link to={`/topics/${topic}`} style={{ textDecoration: 'none' }}>{capitalise(topic)}</Link>
+                    <p><strong>{capitalise(topic)}</strong></p>
 
                 </div>
                 <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }} className="card-title">
