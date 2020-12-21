@@ -2,8 +2,8 @@
 
 - Full stack Reddit-style news application 
 - This is the frontend code for the app, built using React
-- [Click here](https://mr-men-news.netlify.app/) to see the **hosted** version of the app.
-- [Click here](https://github.com/bellaroyle/Mr-Men-News-Backend) to see the **backend code** code for the app
+[Click here](https://mr-men-news.netlify.app/) to see the **hosted** version of the app.
+[Click here](https://github.com/bellaroyle/Mr-Men-News-Backend) to see the **backend code** code for the app
 
 <br>
 
@@ -33,7 +33,7 @@ Although this is hosted and functional, it is still a work in progress and there
 - A side bar with a list of all the articles titles which link to their page when viewing on a desktop
 - Functionality to sort Articles by number of comments 
 - Ability to log in as any valid user, allowing for the functionality that comes with that such as posting and deleting comments
-- Pagination of articles instead of infinite scroll
+- Pagination of articles
 - giving a max height to the articles with a view more button/link so that each article does not take up most of the screen when viewing on a phone
 - Limit the voting functionality so that a user can only up vote or down vote an article once, and cannot vote on their own articles. And only able to vote on articles if logged in. 
 - Ability to create a new user 
