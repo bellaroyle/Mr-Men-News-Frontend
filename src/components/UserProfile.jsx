@@ -72,7 +72,7 @@ class UserProfile extends Component {
             return <CircularProgress />
         }
         else return (
-            <div id='articles-list-container'>
+            <>
                 <div id="user-info-container">
                     <div id="avatar-img-container">
                         <img src={avatar_url} alt={`${username}'s avatar`} height="130" className="avatar-img" />
@@ -82,18 +82,20 @@ class UserProfile extends Component {
                         <h3>{`(${name})`}</h3>
                     </div>
                 </div>
-                <div id='topics-and-sortBy'>
-                    <Topics changeTopic={this.changeTopic} />
-                    <br />
-                    <SortBy changeSort={this.changeSort} />
-                    <br />
+                <div id='articles-list-container'>
+                    <div id='topics-and-sortBy'>
+                        <Topics changeTopic={this.changeTopic} />
+                        <br />
+                        <SortBy changeSort={this.changeSort} />
+                        <br />
+                    </div>
                 </div>
                 <ul id="article-card-container">
                     {articles.map(article => {
                         return <Article article_id={article.article_id} key={article.article_id} />
                     })}
                 </ul>
-            </div>
+            </>
 
         );
 

@@ -62,12 +62,14 @@ class ArticlesList extends Component {
         }
         else {
             return (
-                <div>
-                    <div id='topics-and-sortBy'>
-                        <Topics changeTopic={this.changeTopic} />
-                        <br />
-                        <SortBy changeSort={this.changeSort} />
-                        <br />
+                <div >
+                    <div id='articles-list-container'>
+                        <div id='topics-and-sortBy'>
+                            <Topics changeTopic={this.changeTopic} />
+                            <br />
+                            <SortBy changeSort={this.changeSort} />
+                            <br />
+                        </div>
                     </div>
                     <ul id="article-card-container">
                         {articles.map(article => {
