@@ -3,8 +3,11 @@
 - Full stack Reddit-style news application 
 - This is the frontend code for the app, built using React
 <br>
-[Click here](https://mr-men-news.netlify.app/) to see the **hosted** version of the app.
+
+[Click here](https://mr-men-news.netlify.app/) to see the **hosted** version of the app
+
 <br>
+
 [Click here](https://github.com/bellaroyle/Mr-Men-News-Backend) to see the **backend code** code for the app
 
 <br>
