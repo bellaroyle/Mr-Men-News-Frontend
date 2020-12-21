@@ -8,7 +8,6 @@
 <br>
 
 [Click here](https://github.com/bellaroyle/Mr-Men-News-Backend) to see the **backend code** code for the app
-
 <br>
 
 ### Some info about the app 
