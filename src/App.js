@@ -27,10 +27,8 @@ class App extends Component {
         <div className="App">
 
           <Header />
-          {/* <Topics /> */}
           <Router>
             <ArticlesList path="/" />
-            {/* <ArticlesList path="/topics/:topic_slug" /> */}
             <UserProfile path="users/:username" />
             <Article path='articles/:article_id' limit="100" />
             <ErrorPage default errorMessage="Page not found!" />
