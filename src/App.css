@@ -51,7 +51,16 @@ ul {
   padding: 0;
   margin: 0 auto;
 }
+#articles-list-container{
+  width:75%;
+  margin: 0 auto;
+}
 
+@media only screen and (max-width: 450px){
+  #articles-list-container{
+    width:95%;
+  }
+}
 /********************* ARTICLE-CARD ************************/
 
 .article-body {
@@ -222,12 +231,12 @@ outline:none
   text-align: left;
 }
 #topics-and-sortBy{
-  max-width: 75%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   justify-content: space-evenly;
   flex-wrap:flex;
+  flex-shrink:1;
 }
 
 /********************* single article page ************************/
