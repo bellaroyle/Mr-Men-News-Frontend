@@ -83,7 +83,9 @@ class UserProfile extends Component {
             </div>
             <div id='topics-and-sortBy'>
                 <Topics changeTopic={this.changeTopic} />
+                <br />
                 <SortBy changeSort={this.changeSort} />
+                <br />
             </div>
             <ul id="article-card-container">
                 {articles.map(article => {
