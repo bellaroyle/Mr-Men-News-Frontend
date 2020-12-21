@@ -61,11 +61,7 @@ class Article extends Component {
             return <ErrorPage errorMessage={this.state.errorMessage} />
         }
         if (!this.state.isLoading) {
-            return (
-                <div id='articles-list-container'>
-                    <ArticleCard article={this.state.article} handleVote={this.handleVote} limit={this.props.limit} />
-                </div>
-            )
+            return <ArticleCard article={this.state.article} handleVote={this.handleVote} limit={this.props.limit} />
         }
         else return null
     }
