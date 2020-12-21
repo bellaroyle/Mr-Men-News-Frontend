@@ -16,8 +16,6 @@ import { Link } from '@reach/router'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '75%',
-        maxWidth: '100%',
         margin: '10px auto',
     },
     expand: {
