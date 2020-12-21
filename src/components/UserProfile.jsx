@@ -71,28 +71,29 @@ class UserProfile extends Component {
         else if (this.state.isLoading) {
             return <CircularProgress />
         }
-        else return (<>
-            <div id="user-info-container">
-                <div id="avatar-img-container">
-                    <img src={avatar_url} alt={`${username}'s avatar`} height="130" className="avatar-img" />
+        else return (
+            <div id='articles-list-container'>
+                <div id="user-info-container">
+                    <div id="avatar-img-container">
+                        <img src={avatar_url} alt={`${username}'s avatar`} height="130" className="avatar-img" />
+                    </div>
+                    <div id="name-and-username">
+                        <h2>{username}</h2>
+                        <h3>{`(${name})`}</h3>
+                    </div>
                 </div>
-                <div id="name-and-username">
-                    <h2>{username}</h2>
-                    <h3>{`(${name})`}</h3>
+                <div id='topics-and-sortBy'>
+                    <Topics changeTopic={this.changeTopic} />
+                    <br />
+                    <SortBy changeSort={this.changeSort} />
+                    <br />
                 </div>
+                <ul id="article-card-container">
+                    {articles.map(article => {
+                        return <Article article_id={article.article_id} key={article.article_id} />
+                    })}
+                </ul>
             </div>
-            <div id='topics-and-sortBy'>
-                <Topics changeTopic={this.changeTopic} />
-                <br />
-                <SortBy changeSort={this.changeSort} />
-                <br />
-            </div>
-            <ul id="article-card-container">
-                {articles.map(article => {
-                    return <Article article_id={article.article_id} key={article.article_id} />
-                })}
-            </ul>
-        </>
 
         );
 
