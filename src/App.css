@@ -250,6 +250,12 @@ outline:none
 #single-article {
   width: 75%;
 }
+
+@media only screen and (max-width: 450px){
+  #single-article{
+    width:95%;
+  }
+}
 #avatar-img-container{
   width: 150px;
   height: 150px;

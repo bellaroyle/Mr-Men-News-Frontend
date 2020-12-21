@@ -62,7 +62,7 @@ class ArticlesList extends Component {
         }
         else {
             return (
-                <div id="articles-list-container">
+                <div>
                     <div id='topics-and-sortBy'>
                         <Topics changeTopic={this.changeTopic} />
                         <br />
