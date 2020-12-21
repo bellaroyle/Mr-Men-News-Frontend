@@ -223,7 +223,13 @@ outline:none
   width: 75%;
   margin: 0 auto;
   margin-bottom: 20px;
-  justify-content:flex-start
+  justify-content:center;
+  flex-wrap: wrap-reverse;
+}
+@media only screen and (min-width: 609px){
+  #user-info-container{
+    justify-content:flex-start;
+  }
 }
 #name-and-username{
   padding: 20px;
