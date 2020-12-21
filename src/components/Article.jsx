@@ -55,23 +55,17 @@ class Article extends Component {
             })
 
     }
-    // updateCommentCount = (inc) => {
-    //     const { comment_count } = this.state.article
-    //     let new_comment_count = inc + parseInt(comment_count)
-    //     new_comment_count = new_comment_count.toString()
-    //     this.setState(currState => {
-    //         const { comment_count, ...restOfArticle } = currState.article
-    //         return { article: { ...restOfArticle, new_comment_count } }
-    //     })
-
-    // }
 
     render() {
         if (this.state.hasError) {
             return <ErrorPage errorMessage={this.state.errorMessage} />
         }
         if (!this.state.isLoading) {
-            return <ArticleCard article={this.state.article} handleVote={this.handleVote} limit={this.props.limit} />//updateCommentCount={this.updateCommentCount} />
+            return (
+                <div id='articles-list-container'>
+                    <ArticleCard article={this.state.article} handleVote={this.handleVote} limit={this.props.limit} />
+                </div>
+            )
         }
         else return null
     }
